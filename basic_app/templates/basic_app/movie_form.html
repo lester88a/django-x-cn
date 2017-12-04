@@ -1,0 +1,36 @@
+{% extends 'basic_app/basic_app_base.html' %}
+{% load bootstrap %}
+
+{% block title_block %}
+  {% if not form.instance.pk %}
+    Create
+  {% else %}
+    Update
+  {% endif %}
+{% endblock%}
+
+{% block breadcrumb_block %}
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'movies' %}">Movies</a></li>
+    <li class="breadcrumb-item active">{{movie.title}}</li>
+  </ol>
+{% endblock%}
+
+{% block body_block %}
+  <h1>
+    {% if not form.instance.pk %}
+      Create a new movie
+    {% else %}
+      Update movie
+    {% endif %}
+  </h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{form|bootstrap }}
+    <input type="submit" class="btn btn-outline-success" value="Submit">
+  </form>
+
+
+{% endblock%}

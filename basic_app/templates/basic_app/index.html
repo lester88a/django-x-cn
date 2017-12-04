@@ -1,0 +1,37 @@
+{% extends 'basic_app/basic_app_base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+  Home
+{% endblock%}
+{% block body_block %}
+  <div class="jumbotron">
+    <h1 class="display-3">X-Movies(电影)</h1>
+    <p>Downloading free HD movies just one click, 一键下载电影</p>
+  </div>
+
+  <h3>Highest Rates Movies</h3>
+  <div class="row">
+    {% for movie in movies_rate %}
+      <div class="col-xs-6 col-md-4">
+        <div class="card">
+          <h5 class="card-header"><a href="movies/{{movie.pk}}">{{ movie.title }}</a></h5>
+          <div class="card-body">
+            <h5 class="card-title">{% for genre in movie.genres.all %}{{ genre }} {% endfor %} | {{ movie.rate }}</h5>
+            <h6 class="card-subtitle text-muted">{{ movie.country }}</h6>
+          </div>
+          <img style="height: 200px; width: 100%; display: block;" src="{{ movie.imgurl }}" alt="{{ movie.title }}">
+          <div class="card-body">
+            <p class="card-text">{{ movie.desc }}</p>
+
+            <a href="{{ movie.downloadurl }}" class="btn btn-outline-primary btn-sm">Download</a>
+          </div>
+          <div class="card-footer text-muted">
+            Release date: {{ movie.date }}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+{% endblock%}

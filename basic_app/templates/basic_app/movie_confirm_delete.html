@@ -1,0 +1,25 @@
+{% extends 'basic_app/basic_app_base.html' %}
+{% block title_block %}
+  Delete
+{% endblock%}
+
+{% block breadcrumb_block %}
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'movies' %}">Movies</a></li>
+    <li class="breadcrumb-item active">{{movie.name}}</li>
+  </ol>
+{% endblock%}
+
+{% block body_block %}
+  <h3>Are you sure you want to delete {{movie.name}}?</h3>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete">
+    <a class="btn btn-outline-default btn-sm" href="{% url 'detail' pk=movie.pk %}">Cancel</a>
+
+  </form>
+
+
+
+{% endblock%}

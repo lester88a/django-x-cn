@@ -1,0 +1,26 @@
+{% extends 'basic_app/basic_app_base.html' %}
+{% block title_block %}
+  Movie Details
+{% endblock%}
+
+{% block breadcrumb_block %}
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'movies' %}">Movies</a></li>
+    <li class="breadcrumb-item active">{{movie_detail.title}}</li>
+  </ol>
+{% endblock%}
+
+{% block body_block %}
+  <h2>Movie details:</h2>
+  <p>Name: {{movie_detail.title}}</p>
+  <p>Year: {{movie_detail.year}}</p>
+  <p>Country: {{movie_detail.country}}</p>
+  <p>Rate: {{movie_detail.rate}}</p>
+
+  {% if user.is_authenticated and user.is_superuser %}
+    <a class="btn btn-outline-warning btn-sm" href="{% url 'update' pk=movie_detail.pk %}">Update</a>
+    <a class="btn btn-outline-danger btn-sm" href="{% url 'delete' pk=movie_detail.pk %}">Delete</a>
+  {% endif %}
+
+{% endblock%}

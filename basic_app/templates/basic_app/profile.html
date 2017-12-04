@@ -1,0 +1,56 @@
+{% extends 'basic_app/basic_app_base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+  Schools
+{% endblock%}
+
+{% block breadcrumb_block %}
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active">My Profile</li>
+  </ol>
+{% endblock%}
+
+{% block body_block %}
+
+  {% if user.is_authenticated %}
+
+    <div class="row">
+      <div class="col-xs-1 col-md-2"></div>
+      <div class="col-xs-10 col-md-8">
+        <h3>{{profile.firstname}} {{profile.lastname}}</h3>
+        <div class="card border-primary">
+          <div class="card-body">
+            <blockquote class="card-blockquote">
+              <div class="row">
+                <div class="col-xs-12 col-md-4">
+                  <img style="width: 150px; height: 150px;" class="rounded" src="../{{profile.profile_pic}}" alt="IMG">
+                </div>
+                <div class="col-xs-12 col-md-8">
+                  <p>Username: {{user.username}}</p>
+                  <p>Email: {{user.email}} </p>
+                  <p>Gender: {{profile.gender}} </p>
+                  <p>Birthday: {{profile.birthday}} </p>
+                  <p>QQ: {{profile.qq}}</p>
+                  <p>WeChat: {{profile.wechat}}</p>
+                  <p>Mobile: {{profile.mobile}}</p>
+                </div>
+              </div>
+
+              <footer>{{profile.city}}, {{profile.province}} <br/>{{profile.country}}</footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-1 col-md-2"></div>
+    </div>
+
+
+  {% else %}
+    <p>please <a href="{% url 'login' %}">login</a></p>
+  {% endif %}
+
+
+
+{% endblock%}
