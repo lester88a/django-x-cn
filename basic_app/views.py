@@ -65,25 +65,30 @@ class MovieListView(ListView):
        context['movies'] = movies
        return context
 
-# def movies_list_view(request):
-#     movies_list = Movie.objects.all()
-#
-#     paginator = Paginator(movies_list, 25) # Show 25 contacts per page
-#
-#     page = request.GET.get('page')
-#     try:
-#         movies = paginator.page(page)
-#     except PageNotAnInteger:
-#         # If page is not an integer, deliver first page.
-#         movies = paginator.page(1)
-#     except EmptyPage:
-#         # If page is out of range (e.g. 9999), deliver last page of results.
-#         movies = paginator.page(paginator.num_pages)
-#
-#     data_dict = {'movies':movies}
-#
-#     return render(request,'moviesapp/movie_list.html',context=data_dict)
+def genre_list_view(request):
+    genre_list = Genre.objects.all()
 
+    paginator = Paginator(genre_list, 25) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        genres = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        genres = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        genres = paginator.page(paginator.num_pages)
+
+    data_dict = {'genres':genres}
+
+    return render(request,'basic_app/genre_list.html',context=data_dict)
+
+class GenreDetailView(DetailView):
+    context_object_name = 'genre_detail'
+    model = models.Genre
+    template_name = 'basic_app/genre_detail.html'
+    
 
 class MovieDetailView(DetailView):
     context_object_name = 'movie_detail'
@@ -92,8 +97,6 @@ class MovieDetailView(DetailView):
 
 
 class MovieCreateView(LoginRequiredMixin, CreateView):
-    #login_url = '/login/'
-    #redirect_field_name = 'redirect_to'
     fields = ('title', 'year','date','runtime',
     'country','language','genres',
     'rate','imgurl','downloadurl','desc')
@@ -125,18 +128,16 @@ class MovieSearchListView(MovieListView):
     paginate_by = 10
 
     def get_queryset(self):
-
-        result = super( MovieSearchListView, self).get_queryset()
+        result = super(MovieSearchListView, self).get_queryset()
 
         query = self.request.GET.get('q')
         if query:
             query_list = query.split()
-            print(query_list[0])
             result = result.filter(
                 reduce(operator.and_,
                        (Q(title__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
-                       (Q(year__icontains=q) for q in query_list))
+                       (Q(country__icontains=q) for q in query_list))
             )
 
         return result

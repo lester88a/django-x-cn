@@ -50,7 +50,7 @@ def populate():
 
 
     import csv
-    with open('/home/lester/Downloads/newlist4.csv', newline='') as csvfile:
+    with open('/home/lester/Downloads/m1.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         mygenres = []
         for row in reader:

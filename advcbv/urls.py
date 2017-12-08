@@ -21,6 +21,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.index,name='index'),
     url(r'^movies/',include('basic_app.urls')),
+    url(r'^genres/$',views.genre_list_view,name='genres'),
+    url(r'^genres/(?P<pk>[-\w]+)/$',views.GenreDetailView.as_view(),name='genredetail'),
     url(r'^search/$',views.MovieSearchListView.as_view(),name='search'),
     url(r'^login/$',views.login_view,name='login'),
     url(r'^profile/$',views.profile_view,name='profile'),
