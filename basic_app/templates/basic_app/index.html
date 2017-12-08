@@ -8,23 +8,98 @@
   <div class="jumbotron">
     <h1 class="display-3">X-Movies(电影)</h1>
     <p>Downloading free HD movies just one click, 一键下载电影</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/movies" role="button">All Movies</a>(全部电影)
+    </p>
   </div>
 
   <h3>Highest Rates Movies</h3>
   <div class="row">
     {% for movie in movies_rate %}
-      <div class="col-xs-6 col-md-4">
+      <div class="col-xs-6 col-md-3">
         <div class="card">
           <h5 class="card-header"><a href="movies/{{movie.pk}}">{{ movie.title }}</a></h5>
           <div class="card-body">
             <h5 class="card-title">{% for genre in movie.genres.all %}{{ genre }} {% endfor %} | {{ movie.rate }}</h5>
             <h6 class="card-subtitle text-muted">{{ movie.country }}</h6>
           </div>
-          <img style="height: 200px; width: 100%; display: block;" src="{{ movie.imgurl }}" alt="{{ movie.title }}">
+          <img style="height: 200px; width: 100%; display: block;" src="{{movie.imgurl}}" alt="{{ movie.title }}">
           <div class="card-body">
             <p class="card-text">{{ movie.desc }}</p>
 
-            <a href="{{ movie.downloadurl }}" class="btn btn-outline-primary btn-sm">Download</a>
+            <a href="{{ movie.downloadurl }}" class="btn btn-danger btn-sm">Download</a>
+          </div>
+          <div class="card-footer text-muted">
+            Release date: {{ movie.date }}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <h3>US Movies</h3>
+  <div class="row">
+    {% for movie in movies_usa %}
+      <div class="col-xs-6 col-md-3">
+        <div class="card">
+          <h5 class="card-header"><a href="movies/{{movie.pk}}">{{ movie.title }}</a></h5>
+          <div class="card-body">
+            <h5 class="card-title">{% for genre in movie.genres.all %}{{ genre }} {% endfor %} | {{ movie.rate }}</h5>
+            <h6 class="card-subtitle text-muted">{{ movie.country }}</h6>
+          </div>
+          <img style="height: 200px; width: 100%; display: block;" src="{{movie.imgurl}}" alt="{{ movie.title }}">
+          <div class="card-body">
+            <p class="card-text">{{ movie.desc }}</p>
+
+            <a href="{{ movie.downloadurl }}" class="btn btn-danger btn-sm">Download</a>
+          </div>
+          <div class="card-footer text-muted">
+            Release date: {{ movie.date }}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+   <h3>Chinese Movies</h3>
+  <div class="row">
+    {% for movie in movies_cn %}
+      <div class="col-xs-6 col-md-3">
+        <div class="card">
+          <h5 class="card-header"><a href="movies/{{movie.pk}}">{{ movie.title }}</a></h5>
+          <div class="card-body">
+            <h5 class="card-title">{% for genre in movie.genres.all %}{{ genre }} {% endfor %} | {{ movie.rate }}</h5>
+            <h6 class="card-subtitle text-muted">{{ movie.country }}</h6>
+          </div>
+          <img style="height: 200px; width: 100%; display: block;" src="{{movie.imgurl}}" alt="{{ movie.title }}">
+          <div class="card-body">
+            <p class="card-text">{{ movie.desc }}</p>
+
+            <a href="{{ movie.downloadurl }}" class="btn btn-danger btn-sm">Download</a>
+          </div>
+          <div class="card-footer text-muted">
+            Release date: {{ movie.date }}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+   <h3>Korean Movies</h3>
+  <div class="row">
+    {% for movie in movies_kr %}
+      <div class="col-xs-6 col-md-3">
+        <div class="card">
+          <h5 class="card-header"><a href="movies/{{movie.pk}}">{{ movie.title }}</a></h5>
+          <div class="card-body">
+            <h5 class="card-title">{% for genre in movie.genres.all %}{{ genre }} {% endfor %} | {{ movie.rate }}</h5>
+            <h6 class="card-subtitle text-muted">{{ movie.country }}</h6>
+          </div>
+          <img style="height: 200px; width: 100%; display: block;" src="{{movie.imgurl}}" alt="{{ movie.title }}">
+          <div class="card-body">
+            <p class="card-text">{{ movie.desc }}</p>
+
+            <a href="{{ movie.downloadurl }}" class="btn btn-danger btn-sm">Download</a>
           </div>
           <div class="card-footer text-muted">
             Release date: {{ movie.date }}

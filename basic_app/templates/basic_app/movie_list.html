@@ -21,28 +21,30 @@
   {% if movies %}
 
       {% for item in movies %}
-        <div name='movie-list' class="row">
-          <div class="media-left">
-            <img name='movie-image' class="media-object" style="width: 150px;" src="{{ item.imgurl }}" alt="img">
+        <br/>
+        <div class="row">
+          <div class="col-xs-4 col-md-2">
+
+            <img name='movie-image' class="media-object" style="width: 150px;" src="{{item.imgurl}}" alt="img">
           </div>
-          <div class="media-body">
+          <div class="col-xs-8 col-md-10">
             <h4 name='moive-title' class="media-heading"><a href="{{item.pk}}">{{ item.title }} ({{ item.year }}) </a></h4>
             {% with item.rate|stringformat:"i" as rate %}
-              {% if rate in "8" %}
+              {% if rate in "7" %}
                 <p> <span class='text-success'><i class="fa fa-star" aria-hidden="true"></i> <b name='movie-rates' >{{ item.rate }}</b> </span> &emsp;|&emsp; <span name='movie-genres'>Genre: {% for genre in item.genres.all %}{{ genre }} {% endfor %}</span></p>
               {% else %}
-                <p> <span class='text-warning'><i class="fa fa-star" aria-hidden="true"></i> <b>{{ item.rate }}</b> </span> &emsp;|&emsp; Genre: {% for genre in item.genres.all %}{{ genre }} {% endfor %}</p>
+                <p> <span class='text-warning'><i class="fa fa-star" aria-hidden="true"></i> <b>{{ item.rate }}</b> </span> &emsp;|&emsp; Genre: {% for genre in item.genres.all %}{{ genre }} {% endfor %}&emsp;|&emsp;{{item.country}}</p>
               {% endif %}
             {% endwith %}
-
-            <p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Votes: {{ item.votes }} &emsp;|&emsp; <i class="fa fa-hourglass" aria-hidden="true"></i> Runtime: {{ item.runtime }} min</p>
+            <p><a href="{{ item.downloadurl }}" class="btn btn-danger btn-sm">Download</a></p>
+            <p><i class="fa fa-clock-o" aria-hidden="true"></i> Release Date: {{ item.date }} &emsp;|&emsp; <i class="fa fa-hourglass" aria-hidden="true"></i> Runtime: {{ item.runtime }} min</p>
             <p>{{ item.desc }}</p>
           </div>
         </div>
        {% endfor %}
 
       <div>
-
+    <br/>
     <ul class="pagination">
 
       {% if movies.has_previous %}

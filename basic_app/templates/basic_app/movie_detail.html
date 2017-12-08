@@ -16,8 +16,13 @@
   <p>Name: {{movie_detail.title}}</p>
   <p>Year: {{movie_detail.year}}</p>
   <p>Country: {{movie_detail.country}}</p>
+  <p>Language: {{movie_detail.language}}</p>
   <p>Rate: {{movie_detail.rate}}</p>
-
+  <p>Genre: {{movie_detail.genres}}</p>
+  <p>Runtime: {{movie_detail.runtime}}</p>
+  <p>Release date: {{movie_detail.date}}</p>
+    <p><img style="height: 200px; width: auto%; display: block;" src="{{movie_detail.imgurl}}" alt="Image"></p>
+    <p><a href="{{ movie_detail.downloadurl }}" class="btn btn-danger btn-lg">Download</a></p>
   {% if user.is_authenticated and user.is_superuser %}
     <a class="btn btn-outline-warning btn-sm" href="{% url 'update' pk=movie_detail.pk %}">Update</a>
     <a class="btn btn-outline-danger btn-sm" href="{% url 'delete' pk=movie_detail.pk %}">Delete</a>

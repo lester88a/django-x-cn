@@ -29,11 +29,11 @@ from django.db.models import Q
 # Create your views here.
 def index(request):
     #template_name = 'basic_app/index.html'
-    movies_rate = Movie.objects.filter(rate__range=(9, 10))[:9]
+    movies_rate = Movie.objects.filter(rate__range=(9, 10))[:8]
     #movies_new = Movie.objects.filter(rate__range=(9, 10))[:12]
-    movies_usa = Movie.objects.filter(country='美国',rate__range=(7.0, 10))[:9]
-    movies_cn = Movie.objects.filter(language='国语',rate__range=(8.0, 10))[:9]
-    movies_kr = Movie.objects.filter(country='韩国',rate__range=(8.0, 10))[:9]
+    movies_usa = Movie.objects.filter(country='美国',rate__range=(7.0, 10))[:8]
+    movies_cn = Movie.objects.filter(language='国语',rate__range=(8.0, 10))[:8]
+    movies_kr = Movie.objects.filter(country='韩国',rate__range=(8.0, 10))[:8]
     return render(request,'basic_app/index.html',
                     {'movies_rate':movies_rate,
                     #'movies_new':movies_new,
@@ -46,7 +46,7 @@ class MovieListView(ListView):
     #context_object_name = 'movies'
     model = models.Movie
     template_name = 'basic_app/movie_list.html'
-    paginate_by = 10
+    paginate_by = 100
 
     def get_context_data(self, **kwargs):
        context = super(MovieListView, self).get_context_data(**kwargs)
