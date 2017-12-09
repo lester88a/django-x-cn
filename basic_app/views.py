@@ -21,11 +21,6 @@ from django.contrib.auth.models import User
 #pagenation
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-#search
-import operator
-from django.db.models import Q
-
-
 # Create your views here.
 def index(request):
     #template_name = 'basic_app/index.html'
@@ -46,7 +41,7 @@ class MovieListView(ListView):
     #context_object_name = 'movies'
     model = models.Movie
     template_name = 'basic_app/movie_list.html'
-    paginate_by = 100
+    paginate_by = 200
 
     def get_context_data(self, **kwargs):
        context = super(MovieListView, self).get_context_data(**kwargs)
@@ -88,7 +83,7 @@ class GenreDetailView(DetailView):
     context_object_name = 'genre_detail'
     model = models.Genre
     template_name = 'basic_app/genre_detail.html'
-    
+
 
 class MovieDetailView(DetailView):
     context_object_name = 'movie_detail'

@@ -18,7 +18,7 @@
   <p>Country: {{movie_detail.country}}</p>
   <p>Language: {{movie_detail.language}}</p>
   <p>Rate: {{movie_detail.rate}}</p>
-  <p>Genre: {{movie_detail.genres}}</p>
+  <p>Genre: {% for genre in movie_detail.genres.all %}{{ genre }} {% endfor %}</p>
   <p>Runtime: {{movie_detail.runtime}}</p>
   <p>Release date: {{movie_detail.date}}</p>
     <p><img style="height: 200px; width: auto%; display: block;" src="{{movie_detail.imgurl}}" alt="Image"></p>
